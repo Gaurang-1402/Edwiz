@@ -28,6 +28,8 @@ export default async function handler(
         const response=await fetch(giphyUrl)
         const results=await response.json()
         const url=`https://i.giphy.com/media`
+
+        console.log(results)
         res.send({
             error: false,
             gifs: results.data.map((e:any) => ({id: e.id, url: `${url}/${e.id}/giphy-preview.gif`})).slice(0,11)
