@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { GET_CURRENT_USER } from "../config/api-routes";
-import { GOOGLE_AUTH_START } from "../config/routes";
+import { DASHBOARD, GOOGLE_AUTH_START, HISTORY, LOGOUT } from "../config/routes";
 
 
 
@@ -42,9 +42,9 @@ export const Navbar = () => {
                             </div>
                         </li>
 
-                        <li><a>Dash</a></li>
-                        <li><a>History</a></li>
-                        <li><a>Logout</a></li>
+                        <li><Link href={DASHBOARD}>Dash</Link></li>
+                        <li><Link href={HISTORY}>History</Link></li>
+                        <li><Link href={LOGOUT}>Logout</Link></li>
                     </> : <div className="">
                             <Link href={GOOGLE_AUTH_START} className='btn btn-sm lowercase'>SignIn with Google</Link>
                     </div>}

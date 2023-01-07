@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import { PrismaClient } from '@prisma/client'
 import { getAuthToken } from '../../../../utils/getAuthToken';
 import cookie from 'cookie'
+import { DASHBOARD, ERROR_ROUTE } from '../../../../config/routes';
 
 
 const prisma = new PrismaClient()
@@ -73,10 +74,10 @@ export default async function handler(
             ),
         ])
 
-        res.redirect(`/dash`)
+        res.redirect(DASHBOARD)
     } catch (err) {
         console.error(err);
-        res.redirect("/error");
+        res.redirect(ERROR_ROUTE);
     }
 }
 

@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { ERROR_ROUTE } from '../../../../config/routes';
 import { googleOAuth2ClientInstance } from '../../../../utils/googleOAuth2ClientInstance';
 
 export default function handler(
@@ -16,6 +17,6 @@ export default function handler(
         res.redirect(authUrl);
     } catch (err) {
         console.error(err);
-        res.redirect("/error");
+        res.redirect(ERROR_ROUTE);
     }
 }
