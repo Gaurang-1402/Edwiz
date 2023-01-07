@@ -1,13 +1,16 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import clientPromise from "../../lib/mongodb";
 
-export type WizResponse = {
-    id: string,
-    url: string
+export type HistoryResponse = {
+        img: "",
+        query: "",
+        type: ""
+    
 }
 
 type Data = {
     error: false,
-    wizs: WizResponse[]
+    history: HistoryResponse[]
 } | {
     error: true,
     message: string
@@ -17,19 +20,29 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+    const client = await clientPromise;
+    const db = client.db("history");
+
     if (req.method === 'POST') {
-        const {q} = req.body
-        console.log(q)
-        if(!q){
-            res.status(400).json({ error: true, message: 'Bad request. we need input param' })
+
+        const {userId, img, query, type} = req.
+        
+        if (!userId) {
+            res.json({})
         }
-        const lexiUrl=`https://lexica.art/api/v1/search?q=${q}`
-        const response=await fetch(lexiUrl)
-        const results=await response.json()
+
+        db.history.updateOne(
+        { userId},
+        { $push: { userHistory: {
+            img, query, type
+        } } }
+        )
         res.send({
             error: false,
-            wizs: results.images.map((e:any) => ({id: e.id, url: e.srcSmall}))
+            history: []
         })
+    } else if (req.method === 'GET'){
+
     } else {
         res.status(400).json({ error: true, message: 'Bad request. only POST method is allowed' })
 
