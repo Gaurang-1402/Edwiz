@@ -1,4 +1,3 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,7 +5,7 @@ import { Navbar } from '../components/Navbar'
 import { DASHBOARD, GOOGLE_AUTH_START } from '../config/routes'
 import landingPageImage from "../images/landing_page_placeholder.png"
 
-const Home: NextPage = () => {
+const Home = () => {
   return (
     <div className="flex bg-[url('/images/Landing_bg.png')] min-h-screen flex-col items-center justify-center py-2">
       <Head>
