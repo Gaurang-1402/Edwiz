@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import { GET_CURRENT_USER } from "../config/api-routes";
 import { DASHBOARD, GOOGLE_AUTH_START, HISTORY, LOGOUT } from "../config/routes";
 
-
-
 export const Navbar = () => {
     const [user, setUser] = useState<{
         id: string;
@@ -23,9 +21,9 @@ export const Navbar = () => {
 
     console.log(user)
     return (
-        <div className="navbar bg-base-100 justify-between text-sm">
+        <div className="navbar  justify-between text-sm">
             <div className="">
-                <Link href='/' className="btn btn-ghost normal-case text-lg">Edwiz</Link>
+                <Link href='/' className="btn btn-ghost normal-case text-lg"><img alt="" src="/images/logo.png"  width={200} height={200}></img></Link>
             </div>
             <div className="">
                 <ul className="menu menu-horizontal px-1">
@@ -42,7 +40,7 @@ export const Navbar = () => {
                             </div>
                         </li>
 
-                        <li><Link href={DASHBOARD}>Dash</Link></li>
+                        <li><Link href={DASHBOARD}>Dashboard</Link></li>
                         <li><Link href={HISTORY}>History</Link></li>
                         <li><Link href={LOGOUT}>Logout</Link></li>
                     </> : <div className="">
@@ -50,9 +48,6 @@ export const Navbar = () => {
                     </div>}
                 </ul>
             </div>
-
-
-
         </div>
     )
 

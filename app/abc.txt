@@ -1,0 +1,28 @@
+
+history collection
+
+{
+    _id: "",
+    userId: "",
+    userHistory: [
+        {
+            img: "",
+            query: "",
+            type: ""
+        },
+        {
+            img: "",
+            query: "",
+            type: ""
+        },
+        {
+            img: "",
+            query: "",
+            type: ""
+        }    
+    ]
+}
+
+POST request /history/write
+
+/history/read
