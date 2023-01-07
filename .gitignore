@@ -1,2 +1,5 @@
 ROADMAP
 tm/
+
+.env.example
+yarn.lock

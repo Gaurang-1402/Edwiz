@@ -1,13 +1,13 @@
-import type { NextPage } from 'next'
+import { GOOGLE_AUTH_START } from '../config/routes'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Navbar } from '../components/Navbar'
-import { GOOGLE_AUTH_START } from '../config/routes'
+import type { NextPage } from 'next'
 
 const Home: NextPage = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="flex min-h-screen flex-col items-center justify-center py-2 overflow-hidden">
       <Head>
         <title>Edwiz</title>
         <link rel="icon" href="/favicon.ico" />
