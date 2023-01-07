@@ -67,7 +67,7 @@ const History: NextPage = () => {
   });
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2  bg-[url('/images/Landing_bg.png')]  !overflow-y-scroll h-full">
+    <div className="flex min-h-screen flex-col items-center justify-center py-2 bg-[url('/images/Landing_bg.png')] h-screen">
       <Head>
         <title>Edwiz | History</title>
         <link rel="icon" href="/favicon.ico" />
@@ -75,7 +75,7 @@ const History: NextPage = () => {
 
       <Navbar />
 
-      <div className="flex w-full flex-1 flex-col items-start justify-start text-center m-20 ">
+      <div className="flex w-full flex-1 flex-col items-start justify-start text-center mt-10 mb-0 overflow-y-auto">
         <div className="flex-row flex flex-wrap justify-center ">
           {
             searches.map((search, index) => {
