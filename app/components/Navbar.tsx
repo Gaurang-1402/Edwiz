@@ -21,9 +21,8 @@ export const Navbar = () => {
         }).then(e => e.json()).then(e => setUser(e.user))
     }, [])
 
-    console.log(user)
     return (
-        <div className="navbar bg-base-100 justify-between text-sm">
+        <div className="navbar h-16 bg-base-100 justify-between text-sm">
             <div className="">
                 <Link href='/' className="btn btn-ghost normal-case text-lg">Edwiz</Link>
             </div>

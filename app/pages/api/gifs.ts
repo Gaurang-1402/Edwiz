@@ -3,16 +3,12 @@
 
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { ImagesOrGifsInstance } from './wizs'
 
-
-export type GifResponse = {
-    id: string,
-    url: string
-}
 
 type Data = {
     error: false,
-    gifs: GifResponse[]
+    gifs: ImagesOrGifsInstance[]
 } | {
     error: true,
     message: string
@@ -34,7 +30,7 @@ export default async function handler(
         const url=`https://i.giphy.com/media`
         res.send({
             error: false,
-            gifs: results.data.map((e:any) => ({id: e.id, url: `${url}/${e.id}/giphy-preview.webp`}))
+            gifs: results.data.map((e:any) => ({id: e.id, url: `${url}/${e.id}/giphy-preview.gif`})).slice(0,11)
         })
     } else {
         res.status(400).json({ error: true, message: 'Bad request. only POST method is allowed' })
