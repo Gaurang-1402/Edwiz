@@ -18,7 +18,7 @@ export default async function handler(
         })
         res.send({
             error: false,
-            data: userData
+            user: userData
         })
     } catch (err:any) {
         console.error(err);
