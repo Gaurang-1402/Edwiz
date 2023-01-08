@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 
 import { GET_CURRENT_USER } from "../config/api-routes";
 import Link from "next/link";
-import { useAuthStore } from "../utils/useAuthStore";
 import axios from "axios";
+import { useAuthStore } from "../utils/useAuthStore";
 
 export const Navbar = () => {
 
@@ -20,7 +20,7 @@ export const Navbar = () => {
         <div className="navbar h-16 bg-base-100 justify-between text-sm">
             <div className="">
                 <Link href='/' className="btn btn-ghost normal-case text-lg flex flex-col ml-1 p-5 h-5" style={{borderRadius: "10px !important"}}>
-                    <img alt="" src="/images/logo.png"  width={150} height={150}/>
+                    <img alt="" src="/images/logo.png"  style={{maxWidth:"110px", height:"auto", margin: "0.25rem 0 0 0"}}/>
                 </Link>
             </div>
             <div className="">
