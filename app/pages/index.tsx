@@ -17,7 +17,7 @@ const Home = () => {
     <div className="flex bg-gradient-to-r from-gray-700 via-gray-900 to-black min-h-screen flex-col items-center justify-center " style={{ backdropFilter: "blur(10px)" }}>
       <Head>
         <title>Edwiz</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/images/wizard.png" />
       </Head>
 
       <Navbar />
