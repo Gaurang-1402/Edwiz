@@ -33,11 +33,11 @@ const Home = () => {
                   avgTypingDelay={100}
                   startDelay={2000}
                 >
-                  <h1 className="flex flex-col text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-600 uppercase text-left sm:text-8xl w-fit  ">
+                  <h1 className="flex flex-col text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-600 uppercase text-left sm:text-7xl w-fit  ">
                   Interactive visualizations 
                   </h1>
                   <Typist.Delay ms={500} />
-                  <h2 className="flex flex-col text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-600 uppercase text-left sm:text-7xl w-fit pl-2">
+                  <h2 className="flex flex-col text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-600 uppercase text-left sm:text-6xl w-fit pl-1">
                   on your fingertips 🪄
                   </h2>
                 </Typist>
