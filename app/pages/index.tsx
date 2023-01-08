@@ -67,7 +67,19 @@ const Home = () => {
                   
                 
               </div>
-              <div className="relative hidden sm:block sm:w-1/3 lg:w-3/5">
+              <div className="relative sm:w-1/3 lg:w-3/5 flex flex-row m-20 justify-end">
+                <img 
+                  alt="" 
+                  src="/images/graduation_cap_3d.png" 
+                  className="max-w-xs mr-10 md:max-w-sm animate-bounce" 
+                  style={{opacity: hidden ? "0" : "1", transition: "all 500ms ease-in-out 0s", maxWidth: "200px", height: "auto"}}
+                />
+                <img 
+                  alt="" 
+                  src="/images/backhand_index_pointing_left_3d_default.png" 
+                  className="max-w-xs md:max-w-sm animate-bounce" 
+                  style={{opacity: hidden ? "0" : "1", transition: "all 500ms ease-in-out 0s", maxWidth: "300px", height: "auto"}}
+                />
                 {/* <img src={landingPageImage} className="max-w-xs m-auto md:max-w-sm"/> */}
               </div>
             </div>
