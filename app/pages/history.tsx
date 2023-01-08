@@ -33,7 +33,7 @@ const History: NextPage = () => {
 
       <div className="flex w-full flex-1 flex-col justify-start mt-10 px-10 mb-0 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-800 hover:scrollbar-thumb-slate-600 scrollbar-thumb-rounded" >
         {isLoading && (<div className='alert text-green-500 font-bold flex justify-center mt-3 border-green-300 border-2'>Loading...</div>)}
-        {searches.length===0 && (<div className='alert text-green-500 font-bold flex justify-center mt-3 border-green-300 border-2'>No results found...</div>)}
+        {!isLoading && searches.length===0 && (<div className='alert text-green-500 font-bold flex justify-center mt-3 border-green-300 border-2'>No results found...</div>)}
 
         <div className="flex flex-wrap lg:grid lg:grid-cols-2 xl:grid-cols-3 justify-center  gap-4">
           {
