@@ -5,14 +5,14 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 
-export type WizResponse = {
+export type ImagesOrGifsInstance = {
     id: string,
     url: string
 }
 
 type Data = {
     error: false,
-    wizs: WizResponse[]
+    wizs: ImagesOrGifsInstance[]
 } | {
     error: true,
     message: string
@@ -33,7 +33,7 @@ export default async function handler(
         const results=await response.json()
         res.send({
             error: false,
-            wizs: results.images.map((e:any) => ({id: e.id, url: e.srcSmall}))
+            wizs: results.images.map((e:any) => ({id: e.id, url: e.srcSmall})).slice(0,11)
         })
     } else {
         res.status(400).json({ error: true, message: 'Bad request. only POST method is allowed' })

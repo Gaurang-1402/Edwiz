@@ -1,13 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { Prisma, PrismaClient, selected_blobs } from '@prisma/client';
 
 import clientPromise from "../../lib/mongodb";
+import { getAuthUser } from '../../utils/getAuthUser';
 
-export type HistoryResponse = {
-    img: "",
-    query: "",
-    type: ""
-    
-}
+export type HistoryResponse = Omit<selected_blobs, 'object_data'>
 
 type Data = {
     error: false,
@@ -18,55 +15,46 @@ type Data = {
 }
 
 export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
+    req: NextApiRequest,
+    res: NextApiResponse<Data>
 ) {
-    const client = await clientPromise;
-    const db = client.db("history");
 
-    if (req.method === 'POST') {
-
-        const {userId, img, query, type} = <any>req;
-        
-        if(!userId) {
-            res.json({
-                error: true,
-                message: 'userId is required'
-            })
+    try {
+        const user = getAuthUser(req)
+        if (!user) {
+            throw new Error('Auth required')
         }
+        const client = new PrismaClient();
 
-        db.history.updateOne({userId}, { 
-            $push: { 
-                userHistory: {
-                    img, query, type
-                }
-            } 
+        const results = client.selected_blobs.findMany({
+            where: {
+                user_id: user.id
+            },
+            select: {
+                id: true,
+                query: true,
+                selected_at: true,
+                url: true,
+                resource_id: true,
+                source: true,
+                user_id: true
+            },
+            orderBy: {
+                selected_at: 'desc'
+            }
         });
 
         res.send({
             error: false,
-            history: []
-        })
-    } else if (req.method === 'GET'){
-        const {userId} = <any>req;
-
-        if(!userId) {
-            res.json({
-                error: true,
-                message: 'userId is required'
-            })
-        }
-
-        const history = await db.history.findOne({
-            userId
-        });
-
-        res.send({
-            error: false,
-            history: history.userHistory
+            history: (await results)
         })
 
-    } else {
-        res.status(400).json({ error: true, message: 'Bad request. only POST method is allowed' })
+    } catch (err: any) {
+        res.status(400).send({
+            error: true,
+            message: err.message
+        })
     }
+
+
 }

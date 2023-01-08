@@ -67,7 +67,7 @@ const History: NextPage = () => {
   });
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2 bg-[url('/images/Landing_bg.png')] h-screen">
+    <div className="flex min-h-screen flex-col items-center justify-center h-screen">
       <Head>
         <title>Edwiz | History</title>
         <link rel="icon" href="/favicon.ico" />

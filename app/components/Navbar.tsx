@@ -3,26 +3,21 @@ import { useEffect, useState } from "react";
 
 import { GET_CURRENT_USER } from "../config/api-routes";
 import Link from "next/link";
+import { useAuthStore } from "../utils/useAuthStore";
+import axios from "axios";
 
 export const Navbar = () => {
-    const [user, setUser] = useState<{
-        id: string;
-        name: string;
-        picture: string;
-        email: string;
-        created_time: Date;
-        last_token_generated_at: Date;
-    } | null>(null)
 
+    const {setUser, user}=useAuthStore()
+    // const [user, setUser]=useState<any>(null)
     useEffect(() => {
-        fetch(GET_CURRENT_USER, {
-            credentials: 'include',
-        }).then(e => e.json()).then(e => setUser(e.user))
+        axios.get(GET_CURRENT_USER, {
+            withCredentials: true
+        }).then(e => setUser(e.data.user))
     }, [])
 
-    console.log(user)
     return (
-        <div className="navbar  justify-between text-sm">
+        <div className="navbar h-16 bg-base-100 justify-between text-sm">
             <div className="">
                 <Link href='/' className="btn btn-ghost normal-case text-lg flex flex-col ml-1 p-5 h-5" style={{borderRadius: "10px !important"}}>
                     <img alt="" src="/images/logo.png"  width={150} height={150}/>
