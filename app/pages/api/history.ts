@@ -29,23 +29,44 @@ export default async function handler(
         const {userId, img, query, type} = <any>req;
         
         if(!userId) {
-            res.json({})
+            res.json({
+                error: true,
+                message: 'userId is required'
+            })
         }
 
-        db.history.updateOne(
-        {userId},
-        { $push: { userHistory: {
-            img, query, type
-        } } }
-        )
+        db.history.updateOne({userId}, { 
+            $push: { 
+                userHistory: {
+                    img, query, type
+                }
+            } 
+        });
+
         res.send({
             error: false,
             history: []
         })
     } else if (req.method === 'GET'){
+        const {userId} = <any>req;
+
+        if(!userId) {
+            res.json({
+                error: true,
+                message: 'userId is required'
+            })
+        }
+
+        const history = await db.history.findOne({
+            userId
+        });
+
+        res.send({
+            error: false,
+            history: history.userHistory
+        })
 
     } else {
         res.status(400).json({ error: true, message: 'Bad request. only POST method is allowed' })
-
     }
 }
