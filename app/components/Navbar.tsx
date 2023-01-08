@@ -20,7 +20,7 @@ export const Navbar = () => {
         
         <div className="navbar h-16 justify-between text-sm">
             <div className="">
-                <Link href='/' className="btn btn-ghost normal-case text-lg flex flex-col ml-1 p-10 h-5" style={{borderRadius: "10px !important"}}>
+                <Link href='/' className="btn btn-ghost normal-case text-lg flex flex-col ml-1 p-6 h-5" style={{borderRadius: "6px !important"}}>
                     <img alt="" src="/images/logo.png" className=""  style={{maxWidth:"110px", height:"auto", margin: "0.25rem 0 0 0"}}/>
                 </Link>
             </div>
