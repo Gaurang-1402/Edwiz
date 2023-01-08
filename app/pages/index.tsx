@@ -22,7 +22,7 @@ const Home = () => {
 
       <Navbar />
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center px-10">
+      <main className="flex w-full flex-1 flex-col items-center justify-center text-center px-10">
         <main className="relative overflow-hidden ">
           <div className="relative z-20 flex items-center justify-center overflow-hidden">
             <div className="relative flex flex-col md:flex-row gap-5 px-6 mx-auto" style={{ transition: "ease-in" }}>
@@ -70,7 +70,7 @@ const Home = () => {
                   </Link>}
                 </div>
               </div>
-              <div className="relative flex flex-row m-20 mt-40 justify-center">
+              <div className="relative flex flex-row sm:m-20 sm:mt-40 justify-center">
                 <img
                   alt=""
                   src="/images/atom.gif"

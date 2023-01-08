@@ -29,7 +29,7 @@ const History: NextPage = () => {
 
       <Navbar />
 
-      <div className="text-3xl text-amber-400 font-extrabold text-left mt-10 pl-16">History</div>
+      <div className="text-3xl text-amber-400 font-extrabold text-left mt-10">History</div>
 
       <div className="flex w-full flex-1 flex-col justify-start mt-10 px-10 mb-0 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-800 hover:scrollbar-thumb-slate-600 scrollbar-thumb-rounded" >
         {isLoading && (<div className='alert text-green-500 font-bold flex justify-center mt-3 border-green-300 border-2'>Loading...</div>)}
