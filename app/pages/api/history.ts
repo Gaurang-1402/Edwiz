@@ -1,10 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+
 import clientPromise from "../../lib/mongodb";
 
 export type HistoryResponse = {
-        img: "",
-        query: "",
-        type: ""
+    img: "",
+    query: "",
+    type: ""
     
 }
 
@@ -25,14 +26,14 @@ export default async function handler(
 
     if (req.method === 'POST') {
 
-        const {userId, img, query, type} = req.
+        const {userId, img, query, type} = <any>req;
         
-        if (!userId) {
+        if(!userId) {
             res.json({})
         }
 
         db.history.updateOne(
-        { userId},
+        {userId},
         { $push: { userHistory: {
             img, query, type
         } } }
