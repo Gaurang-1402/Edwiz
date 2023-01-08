@@ -16,7 +16,7 @@ const History: NextPage = () => {
   });
 
   return (
-    <div className="flex bg-[url('/images/Landing_bg.png')] min-h-screen flex-col items-center justify-center h-screen" >
+    <div className="flex bg-gradient-to-r from-purple-600 via-purple-700 to-purple-900 min-h-screen flex-col items-center justify-center h-screen" >
       <Head>
         <title>Edwiz | History</title>
         <link rel="icon" href="/favicon.ico" />
