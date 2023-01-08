@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+    font-family: 'MyWebFont';
+    src: url('https://d33wubrfki0l68.cloudfront.net/7304d725f5cfe32a20b531ad41d0ce07f66b89e0/308ed/fonts/aeonikfono-regular.woff2') format('woff2');
+  }
+
+
+  *{
+    font-family: MyWebFont !important;
+  }
