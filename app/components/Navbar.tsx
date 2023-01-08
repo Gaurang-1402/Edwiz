@@ -32,7 +32,7 @@ export const Navbar = () => {
 
                         <li className="flex hover:cursor-default">
                             <div className="flex hover:bg-base-100  hover:cursor-default">
-                                <img className="w-6 avatar rounded-full" src="https://placeimg.com/80/80/people" />
+                                <img className="w-6 avatar rounded-full" src={user.picture} />
                                 <span className="font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
                                     Hi, {user.name.split(' ')[0]}!
                                 </span>
