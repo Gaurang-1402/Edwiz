@@ -432,7 +432,7 @@ const Dash: NextPage = () => {
   
 
   return (
-    <div className="flex bg-gradient-to-r from-purple-600 via-purple-700 to-purple-900 flex-col items-center justify-center overflow-hidden">
+    <div className="flex bg-gradient-to-r from-slate-600 via-slate-700 to-slate-900 flex-col items-center justify-center overflow-hidden">
       <Head>
         <title>Edwiz | Dash</title>
         <link rel="icon" href="/favicon.ico" />

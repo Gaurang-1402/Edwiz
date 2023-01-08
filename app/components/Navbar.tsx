@@ -19,7 +19,7 @@ export const Navbar = () => {
     return (
         // transparent background color
 
-        <div className="navbar h-16 justify-between text-sm mt-3 px-5" style={{backgroundColor: "rgba(255, 255, 255, 0)", backdropFilter: "blur(5px)"}}>
+        <div className="navbar h-16 justify-between text-sm py-3 px-5" style={{backgroundColor: "rgba(0, 0, 0, 0.0)", backdropFilter: "blur(5px)"}}>
 
             <div className="">
                 <Link href='/' className="btn btn-ghost normal-case text-lg flex flex-col ml-1 p-6 h-5" style={{borderRadius: "5px !important", /* backgroundColor: "rgba(0, 0, 0, .15)" */}}>

@@ -13,7 +13,7 @@ const Home = () => {
   const [hidden, setHidden] = useState(true)
   const { user } = useAuthStore()
   return (
-    <div className="flex bg-gradient-to-r from-purple-600 via-purple-700 to-purple-900 min-h-screen flex-col items-center justify-center " style={{backdropFilter: "blur(10px)"}}>
+    <div className="flex bg-gradient-to-tl from-black via-blue-900 to-blue-700 min-h-screen flex-col items-center justify-center " style={{backdropFilter: "blur(10px)"}}>
       <Head>
         <title>Edwiz</title>
         <link rel="icon" href="/favicon.ico" />
