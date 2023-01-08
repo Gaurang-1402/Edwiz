@@ -465,15 +465,15 @@ const Dash: NextPage = () => {
           </div>
 
 
-          <div className='flex flex-row h-full border-l border-gray-600 h-auto' style={{flex:"1"}}>
-            <div className="menu flex flex-col p-4 h-[100%] overflow-y-auto bg-base-200 text-base-content justify-between">
+          <div className='flex flex-row h-full border-l border-gray-600 h-auto overflow-x-hidden ' style={{flex:"1"}}>
+            <div className="menu flex flex-col p-4 h-[90vh] overflow-y-auto overflow-x-hidden bg-base-200 text-base-content justify-between scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-800 hover:scrollbar-thumb-slate-600 scrollbar-thumb-rounded">
               {/* Searchbox */}
 
               {/* as the user types something we hit the API and fetch the data, and show here */}
 
               {currentPane === 'history' ?
                 <div>
-                  <div className="text-xl font-bold text-amber-300">Recently Used</div>
+                  <div className="text-l font-bold text-amber-300">Recently Used</div>
                   {(currentQValue.length > 3 && !historyData.length && !isLoading) ? <img src='/icons/ezgif-5-672dfdd7b6.gif' className='rounded-lg border-2 mt-3 border-green-300' /> : null}
                   {isHistoryLoading && (<div className='alert text-green-500 font-bold flex justify-center mt-3 border-green-300 border-2'>Loading...</div>)}
                   {historyData.map(e => (
