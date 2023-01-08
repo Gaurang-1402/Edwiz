@@ -1,5 +1,6 @@
 # EDwiz 🪄
 
+
 ## Inspiration 💡
 
 
@@ -134,4 +135,5 @@ We are a **team of 4** passionate about bringing remote education to areas with 
 
 **Note ⚠️ — API credentials have been revoked. If you want to run the same on your local, use your own credentials.**
 
-  
+[![thanks.png](https://i.postimg.cc/8c3DsRWc/thanks.png)](https://postimg.cc/64dFmGMx)
+
