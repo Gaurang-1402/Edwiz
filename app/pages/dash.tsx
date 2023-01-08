@@ -427,7 +427,7 @@ const Dash: NextPage = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex bg-[url('/images/Landing_bg.png')] flex-col items-center justify-center">
       <Head>
         <title>Edwiz | Dash</title>
         <link rel="icon" href="/favicon.ico" />

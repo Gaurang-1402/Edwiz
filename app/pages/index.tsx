@@ -13,7 +13,7 @@ const Home = () => {
   const [hidden, setHidden] = useState(true)
   const { user } = useAuthStore()
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center ">
+    <div className="flex  bg-[url('/images/Landing_bg.png')]  min-h-screen flex-col items-center justify-center ">
       <Head>
         <title>Edwiz</title>
         <link rel="icon" href="/favicon.ico" />
@@ -33,12 +33,12 @@ const Home = () => {
                   avgTypingDelay={100}
                   startDelay={2000}
                 >
-                  <h1 className="flex flex-col text-6xl font-black leading-none uppercase text-left sm:text-8xl ">
-                    Gestures
+                  <h1 className="flex flex-col text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-600 uppercase text-left sm:text-8xl w-fit  ">
+                  Interactive visualizations 
                   </h1>
                   <Typist.Delay ms={500} />
-                  <h2 className="flex flex-col text-5xl font-black leading-none uppercase text-left sm:text-7xl w-fit pl-2">
-                    to images
+                  <h2 className="flex flex-col text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-600 uppercase text-left sm:text-7xl w-fit pl-2">
+                  on your fingertips 🪄
                   </h2>
                 </Typist>
                 <Typist
@@ -47,9 +47,13 @@ const Home = () => {
                   startDelay={4000}
                   onTypingDone={() => setHidden(false)}
                 >
-                  <p className="text-sm text-gray-400 text-left sm:text-base pt-5 pl-1">
-                    Enhance your online classes by creating GIFs or AI generated images using your gestures. Atoms on your palm, DNA on your fist, fire on your index finger.
-                    Edwiz is here to make your class a magical experience.
+                  <p className="text-sm text-gray-400 text-left text-xl pt-5 pl-1 font-bold">
+
+                  Remote teaching just got an upgrade. Configure gestures to match visualizations so that you can teach more effectively during Zoom classes. Replace video editing with live generated visualizations.
+                  </p>
+                  <p className='font-bold text-2xl pt-3'>
+                  Gestures → Visualizations
+
                   </p>
                 </Typist>
                

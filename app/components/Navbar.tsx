@@ -17,10 +17,11 @@ export const Navbar = () => {
     }, [])
 
     return (
-        <div className="navbar h-16 bg-base-100 justify-between text-sm">
+        
+        <div className="navbar h-16 justify-between text-sm">
             <div className="">
-                <Link href='/' className="btn btn-ghost normal-case text-lg flex flex-col ml-1 p-5 h-5" style={{borderRadius: "10px !important"}}>
-                    <img alt="" src="/images/logo.png"  style={{maxWidth:"110px", height:"auto", margin: "0.25rem 0 0 0"}}/>
+                <Link href='/' className="btn btn-ghost normal-case text-lg flex flex-col ml-1 p-10 h-5" style={{borderRadius: "10px !important"}}>
+                    <img alt="" src="/images/logo.png" className=""  style={{maxWidth:"110px", height:"auto", margin: "0.25rem 0 0 0"}}/>
                 </Link>
             </div>
             <div className="">
