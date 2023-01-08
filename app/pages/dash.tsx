@@ -440,14 +440,15 @@ const Dash: NextPage = () => {
             <div className={`flex flex-col items-center justify-center rounded-[10px] overflow-hidden`}>
               <Sketch setup={setup} draw={draw} />
             </div>
-            <div className='flex gap-2 items-center justify-between flex-1 w-full px-10' style={{margin:"4rem 4rem 0 4rem"}}>
-              <div className='text-xl mr-4 font-bold text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600'>
-                Configured Gestures:
+            <div className='text-xl pt-5 pb-0  mr-4 font-bold text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600'>
+                Configured Gestures
               </div>
+            <div className='flex gap-2 items-center justify-between flex-1 w-3/4 px-5' style={{margin:"1.5rem 0rem 0rem 0rem"}}>
+  
               {gestures.map((e, indx) => (
-                <div key={indx} className={`${e.color} w-40 h-40 relative rounded`}>
-                  <img src={e.icon} className='absolute bg-gray-600 rounded mr-10 w-16' style={{left:"-10px", top: "-10px"}}/>
-                  <img src={configuredGestures[indx] ? configuredGestures[indx].url : '/icons/icons8-no-image-100.png'} className='h-full w-40' />
+                <div key={indx} className={`${e.color} w-36 h-36 relative rounded`}>
+                  <img src={e.icon} className='absolute p-2 border-2 bg-gray-600 rounded mr-10 w-16' style={{left:"-10px", top: "-10px"}}/>
+                  <img src={configuredGestures[indx] ? configuredGestures[indx].url : '/icons/icons8-no-image-100.png'} className='h-full w-40 '  />
                 </div>
               ))}
 
@@ -466,13 +467,13 @@ const Dash: NextPage = () => {
 
 
           <div className='flex flex-row h-full border-l border-gray-600 h-auto overflow-x-hidden ' style={{flex:"1"}}>
-            <div className="menu flex flex-col p-4 h-[90vh] overflow-y-auto overflow-x-hidden bg-base-200 text-base-content justify-between scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-800 hover:scrollbar-thumb-slate-600 scrollbar-thumb-rounded">
+            <div className="menu flex flex-col p-4 h-[90vh] overflow-y-auto overflow-x-hidden bg-base-200 text-base-content justify-between ">
               {/* Searchbox */}
 
               {/* as the user types something we hit the API and fetch the data, and show here */}
 
               {currentPane === 'history' ?
-                <div>
+                <div className='h-[45rem] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-800 hover:scrollbar-thumb-slate-600 scrollbar-thumb-rounded scroll-pl-16'>
                   <div className="text-l font-bold text-amber-300">Recently Used</div>
                   {(currentQValue.length > 3 && !historyData.length && !isLoading) ? <img src='/icons/ezgif-5-672dfdd7b6.gif' className='rounded-lg border-2 mt-3 border-green-300' /> : null}
                   {isHistoryLoading && (<div className='alert text-green-500 font-bold flex justify-center mt-3 border-green-300 border-2'>Loading...</div>)}
@@ -491,7 +492,7 @@ const Dash: NextPage = () => {
                   ))}
                 </div> :
 
-                <div className='flex flex-col gap-2'>
+                <div className='h-[45rem] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-800 hover:scrollbar-thumb-slate-600 scrollbar-thumb-rounded scroll-pl-16 flex flex-col gap-2'>
                   <div className='flex gap-1'>
                     <input onKeyUp={(e) => (e.key === 'Enter' && fetchResources())} onChange={(e) => setCurrentQValue(e.target.value)} type="text" placeholder="Type something and see the magic 🦄... " className="input input-bordered input-accent w-full max-w-xs" />
                   </div>
