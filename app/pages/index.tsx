@@ -11,7 +11,7 @@ const Home = () => {
 
   const { user } = useAuthStore()
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center">
+    <div className="flex min-h-screen flex-col items-center justify-center ">
       <Head>
         <title>Edwiz</title>
         <link rel="icon" href="/favicon.ico" />

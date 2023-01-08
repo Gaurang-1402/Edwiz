@@ -10,7 +10,10 @@ module.exports = {
       '128': '32rem',
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui"),
+    require('tailwind-scrollbar')({ nocompatible: true })
+  ],
   daisyui: {
     themes: ["night"],
   },
