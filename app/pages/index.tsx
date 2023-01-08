@@ -7,6 +7,7 @@ import { Navbar } from '../components/Navbar'
 import Typist from 'react-typist';
 import landingPageImage from "../images/landing_page_placeholder.png"
 import { useAuthStore } from '../utils/useAuthStore'
+import { TextScramble } from '@a7sc11u/scramble';
 import { useState } from "react"
 
 const Home = () => {
@@ -26,23 +27,31 @@ const Home = () => {
           <div className="relative z-20 flex items-center justify-center overflow-hidden">
             <div className="relative flex flex-col md:flex-row gap-5 px-6 mx-auto" style={{ transition: "ease-in" }}>
               <div className="relative flex flex-col m-20 items-center justify-center z-20">
+                
+              <TextScramble
+                    className="flex flex-col text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-600 uppercase text-left sm:text-7xl w-fit pl-1"
+                    play={true}
+                    speed={1}
+                    text="Interactive visualizations on your fingertips 🪄"
+                  />
+
                 <Typist
                   cursor={{ show: false }}
                   avgTypingDelay={100}
-                  startDelay={1000}
+                  startDelay={100}
                 >
-                  <h1 className="flex flex-col text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-600 uppercase text-left sm:text-7xl w-fit  ">
+                  {/* <h1 className="flex flex-col text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-600 uppercase text-left sm:text-7xl w-fit  ">
                     Interactive visualizations
                   </h1>
                   <Typist.Delay ms={500} />
                   <h2 className="flex flex-col text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-600 uppercase text-left sm:text-6xl w-fit pl-1">
                     on your fingertips 🪄
-                  </h2>
+                  </h2> */}
                 </Typist>
                 <Typist
                   cursor={{ show: false }}
                   avgTypingDelay={25}
-                  startDelay={4000}
+                  startDelay={10}
                   onTypingDone={() => setHidden(false)}
                 >
                   <p className="text-sm text-gray-400 text-left pt-5 pl-1 font-bold">
@@ -61,7 +70,7 @@ const Home = () => {
                   </Link>}
                 </div>
               </div>
-              <div className="relative flex flex-row m-20 justify-center">
+              <div className="relative flex flex-row m-20 mt-40 justify-center">
                 <img
                   alt=""
                   src="/images/atom.gif"
