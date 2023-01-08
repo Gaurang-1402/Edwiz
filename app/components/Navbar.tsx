@@ -3,21 +3,17 @@ import { useEffect, useState } from "react";
 
 import { GET_CURRENT_USER } from "../config/api-routes";
 import Link from "next/link";
+import { useAuthStore } from "../utils/useAuthStore";
+import axios from "axios";
 
 export const Navbar = () => {
-    const [user, setUser] = useState<{
-        id: string;
-        name: string;
-        picture: string;
-        email: string;
-        created_time: Date;
-        last_token_generated_at: Date;
-    } | null>(null)
 
+    const {setUser, user}=useAuthStore()
+    // const [user, setUser]=useState<any>(null)
     useEffect(() => {
-        fetch(GET_CURRENT_USER, {
-            credentials: 'include',
-        }).then(e => e.json()).then(e => setUser(e.user))
+        axios.get(GET_CURRENT_USER, {
+            withCredentials: true
+        }).then(e => setUser(e.data.user))
     }, [])
 
     return (

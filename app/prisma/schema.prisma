@@ -11,10 +11,28 @@ datasource db {
 }
 
 model user {
-    id                      String   @id @default(auto()) @map("_id") @db.ObjectId
+    id                      String           @id @default(auto()) @map("_id") @db.ObjectId
     name                    String
     picture                 String
-    email                   String   @unique
-    created_time            DateTime @default(now())
-    last_token_generated_at DateTime @default(now())
+    email                   String           @unique
+    created_time            DateTime         @default(now())
+    last_token_generated_at DateTime         @default(now())
+    selected_blobs          selected_blobs[]
+}
+
+model selected_blobs {
+    id          String   @id @default(auto()) @map("_id") @db.ObjectId
+    query       String
+    object_data Bytes
+    url         String
+    resource_id String
+    source      Source
+    user_id     String @db.ObjectId
+    user        user     @relation(fields: [user_id], references: [id])
+    selected_at DateTime @default(now())
+}
+
+enum Source {
+    GIPHY
+    LEXICA
 }

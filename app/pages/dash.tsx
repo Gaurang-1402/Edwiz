@@ -10,7 +10,7 @@ import dynamic from 'next/dynamic'
 import p5Types from "p5";
 import { useScript } from '../utils/useScript'
 import axios from 'axios'
-import { FETCH_GIFS, FETCH_WIZS } from '../config/api-routes'
+import { FETCH_GIFS, FETCH_WIZS, LIST_HISTORY, REGISTER_BLOB } from '../config/api-routes'
 import { toast } from 'react-toastify'
 import { ImagesOrGifsInstance } from './api/wizs'
 
@@ -45,7 +45,7 @@ const Dash: NextPage = () => {
   const handConfidence = useRef<any>(null);
   const [lastGesture, setLastGesture] = useState<'none' | 'pinky' | 'index' | 'thumb'>('none');
   // const [imageIndex, setImageIndex] = useState(-1) // -1 means no image
-  const [imageObj, setImageObj] = useState<Record<'pinky' | 'index' | 'thumb', {url: string, image: any} | null>>({ pinky: null, index: null, thumb: null })
+  const [imageObj, setImageObj] = useState<Record<'pinky' | 'index' | 'thumb', { url: string, image: any } | null>>({ pinky: null, index: null, thumb: null })
 
 
 
@@ -62,7 +62,8 @@ const Dash: NextPage = () => {
 
   const [cache, setCache] = useState<Record<string, ImagesOrGifsInstance[]>>({})
   const [configuredGestures, setConfiguredGestures] = useState<Record<number, { url: string }>>({})
-
+  const [historyData, setHistoryData] = useState<ImagesOrGifsInstance[]>([])
+  const [isHistoryLoading, setIsHistoryLoading] = useState(false)
 
   useEffect(() => {
     fetchResources()
@@ -227,9 +228,9 @@ const Dash: NextPage = () => {
         url = configuredGestures[2]?.url
       }
       if (url) {
-        const oldInstance=(imageObj as any)[finger]
-        if(oldInstance?.url!==url){
-          setImageObj({...imageObj, [finger]: {url: url, image: p5.loadImage(url)}})
+        const oldInstance = (imageObj as any)[finger]
+        if (oldInstance?.url !== url) {
+          setImageObj({ ...imageObj, [finger]: { url: url, image: p5.loadImage(url) } })
         }
       }
     })
@@ -435,8 +436,25 @@ const Dash: NextPage = () => {
 
   // }
 
+
+
+  const fetchHistoryData = async () => {
+    setIsHistoryLoading(true)
+    setHistoryData([])
+    try {
+      const result = await axios.get(LIST_HISTORY);
+      console.log(result.data.history)
+
+      setHistoryData(result.data.history)
+
+    } catch (err: any) {
+      toast.error(err.message)
+    }
+    setIsHistoryLoading(false)
+  }
+
   return (
-    <div className="flex flex-col items-center justify-center py-2">
+    <div className="flex flex-col items-center justify-center">
       <Head>
         <title>Edwiz | Dash</title>
         <link rel="icon" href="/favicon.ico" />
@@ -489,9 +507,27 @@ const Dash: NextPage = () => {
               {/* as the user types something we hit the API and fetch the data, and show here */}
 
               {currentPane === 'history' ?
-
                 <div>
-                  History
+
+                  <div className="text-xl font-bold text-amber-300">Recently Used</div>
+                  {(currentQValue.length > 3 && !historyData.length && !isLoading) ? <img src='/icons/ezgif-5-672dfdd7b6.gif' className='rounded-lg border-2 mt-3 border-green-300' /> : null}
+                  {isHistoryLoading && (<div className='alert text-green-500 font-bold flex justify-center mt-3 border-green-300 border-2'>Loading...</div>)}
+                  {historyData.map(e => (
+                    <img onClick={() => {
+                      if (lastGesture === 'none') {
+                        toast.error(`Sorry we couldn't find any hand gesture.. 😥`, { toastId: 10202 })
+                      } else if (lastGesture === 'index') {
+                        setConfiguredGestures({ ...configuredGestures, 1: { url: e.url } })
+                      } else if (lastGesture === 'thumb') {
+                        setConfiguredGestures({ ...configuredGestures, 0: { url: e.url } })
+                      } else if (lastGesture === 'pinky') {
+                        setConfiguredGestures({ ...configuredGestures, 2: { url: e.url } })
+                      }
+                    }} key={e.id} src={e.url} className='cursor-pointer rounded-lg border-2 hover:border-4 mt-3 hover:border-green-500 border-green-300 min-h-12 bg-purple-500 w-full' />
+                  ))}
+
+
+
                 </div> :
 
                 <div className='flex flex-col gap-2'>
@@ -522,6 +558,17 @@ const Dash: NextPage = () => {
                         } else if (lastGesture === 'pinky') {
                           setConfiguredGestures({ ...configuredGestures, 2: { url: e.url } })
                         }
+
+                        axios.post(REGISTER_BLOB, {
+                          "id": e.id,
+                          "url": e.url,
+                          "query": currentQValue,
+                          "source": currentMode
+                        }).then(f => {
+                          console.log(f.data)
+                        }).catch(err => {
+                          toast.error(err.message)
+                        })
                       }} key={e.id} src={e.url} className='cursor-pointer rounded-lg border-2 hover:border-4 mt-3 hover:border-green-500 border-green-300 min-h-12 bg-purple-500 w-full' />
                     ))}
 
@@ -543,7 +590,7 @@ const Dash: NextPage = () => {
             </ul>
 
             <div className='absolute  h-[2vh] w-[30vw] flex justify-center gap-4 bottom-0 right-0'>
-              <label onClick={() => setCurrentPane('history')} htmlFor="my-drawer-4" className={`drawer-button btn gap-2 btn-sm ${currentPane === 'history' ? 'btn-warning' : 'btn-ghost border-white border'}`}><img className='w-7' src='/icons/Time Machine.svg' />History</label>
+              <label onClick={() => {setCurrentPane('history'), fetchHistoryData()}} htmlFor="my-drawer-4" className={`drawer-button btn gap-2 btn-sm ${currentPane === 'history' ? 'btn-warning' : 'btn-ghost border-white border'}`}><img className='w-7' src='/icons/Time Machine.svg' />History</label>
               <label onClick={() => setCurrentPane('search')} htmlFor="my-drawer-4" className={`drawer-button btn  gap-2 btn-sm ${currentPane === 'search' ? 'btn-warning' : 'btn-ghost border-white border'}`}><img className='w-7' src='/icons/Compass.svg' />Search</label>
             </div>
           </div>
