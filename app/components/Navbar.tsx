@@ -40,7 +40,7 @@ export const Navbar = () => {
                         <li><Link href={HISTORY}>History</Link></li>
                         <li><Link href={LOGOUT}>Logout</Link></li>
                     </> : <div className="">
-                            <Link href={GOOGLE_AUTH_START} className='btn btn-sm lowercase'>SignIn with Google</Link>
+                            <Link href={GOOGLE_AUTH_START} className='btn btn-sm'>Sign in with Google</Link>
                     </div>}
                 </ul>
             </div>
