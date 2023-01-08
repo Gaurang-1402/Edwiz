@@ -1,19 +1,19 @@
-import type { NextPage } from 'next'
+import { FETCH_GIFS, FETCH_WIZS, LIST_HISTORY, REGISTER_BLOB } from '../config/api-routes'
+import { useEffect, useRef, useState } from 'react'
+
+import DrawerContent from '../components/DrawerContent'
 import Head from 'next/head'
 import Image from 'next/image'
+import { ImagesOrGifsInstance } from './api/wizs'
 import Link from 'next/link'
 import { Navbar } from '../components/Navbar'
+import type { NextPage } from 'next'
 import { SearchBox } from '../components/SearchBox'
-import DrawerContent from '../components/DrawerContent'
-import { useEffect, useRef, useState } from 'react'
+import axios from 'axios'
 import dynamic from 'next/dynamic'
 import p5Types from "p5";
-import { useScript } from '../utils/useScript'
-import axios from 'axios'
-import { FETCH_GIFS, FETCH_WIZS, LIST_HISTORY, REGISTER_BLOB } from '../config/api-routes'
 import { toast } from 'react-toastify'
-import { ImagesOrGifsInstance } from './api/wizs'
-
+import { useScript } from '../utils/useScript'
 
 const THRESHOLD = 0.80;
 
@@ -47,18 +47,12 @@ const Dash: NextPage = () => {
   // const [imageIndex, setImageIndex] = useState(-1) // -1 means no image
   const [imageObj, setImageObj] = useState<Record<'pinky' | 'index' | 'thumb', { url: string, image: any } | null>>({ pinky: null, index: null, thumb: null })
 
-
-
-
   const ml5ScriptStatus = useScript('https://unpkg.com/ml5@latest/dist/ml5.min.js')
 
   const [lastTimeFetchedAt, setLastTimeFetchedAt] = useState(-1)
   const [queriedResoruces, setQueriedResoruces] = useState<ImagesOrGifsInstance[]>([])
   const [currentQValue, setCurrentQValue] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-
-
-
 
   const [cache, setCache] = useState<Record<string, ImagesOrGifsInstance[]>>({})
   const [configuredGestures, setConfiguredGestures] = useState<Record<number, { url: string }>>({})
@@ -68,9 +62,6 @@ const Dash: NextPage = () => {
   useEffect(() => {
     fetchResources()
   }, [currentMode, currentQValue])
-
-
-
 
   if (ml5ScriptStatus !== 'ready') {
     return <div>Loading...</div>
@@ -103,16 +94,12 @@ const Dash: NextPage = () => {
     }
   ]
 
-
-
-
   async function fetchResources() {
 
     const genKey = (query: string) => {
       console.log(`${query}_${currentMode}`)
       return `${query}_${currentMode}`
     }
-
 
     const query = currentQValue;
     if (query.length < 3) {
@@ -165,12 +152,6 @@ const Dash: NextPage = () => {
     }
   }
 
-
-
-
-
-
-
   // P5JS
 
   let x = 50;
@@ -180,8 +161,8 @@ const Dash: NextPage = () => {
   const setup = (p5: p5Types, canvasParentRef: Element) => {
     // p5.createCanvas(window.innerWidth*0.7, window.innerHeight*0.7).parent(canvasParentRef);
 
-    const width = window.innerWidth * 0.65
-    const height = window.innerHeight * 0.70
+    const width = window.innerWidth * 0.60
+    const height = window.innerHeight * 0.65
     p5.createCanvas(width, height).parent(canvasParentRef);
     p5.background(0);
     // p5.frameRate(60)
@@ -210,13 +191,8 @@ const Dash: NextPage = () => {
     }
   }
 
-
-
-
   function draw(p5: p5Types) {
     p5.image(video.current as any, 0, 0);
-
-
 
     ['index', 'thumb', 'pinky'].forEach((finger) => {
       let url = null;
@@ -234,9 +210,6 @@ const Dash: NextPage = () => {
         }
       }
     })
-
-
-
 
     if (handPose.current) {
       pinkyUp(p5);
@@ -460,27 +433,20 @@ const Dash: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-
       <main className="w-full min-h-screen">
-
         <Navbar />
-
-
         <div className="px-5 h-full relative flex justify-between">
-
-
-          <div className='w-[65vw]'>
-
-            <Sketch setup={setup} draw={draw} />
-
-            <div className='flex gap-2 items-center justify-between'>
-
+          <div className='flex flex-col items-center justify-between p-5' style={{flex:"4.5"}}>
+            <div className={`flex flex-col items-center justify-center rounded-[10px] overflow-hidden`}>
+              <Sketch setup={setup} draw={draw} />
+            </div>
+            <div className='flex gap-2 items-center justify-between flex-1 w-full px-10' style={{margin:"4rem 4rem 0 4rem"}}>
               <div className='text-xl mr-4 font-bold text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600'>
                 Configured Gestures:
               </div>
               {gestures.map((e, indx) => (
-                <div key={indx} className={`${e.color} w-40 h-40 relative border-gray-200 border`}>
-                  <img src={e.icon} className='absolute bg-gray-600 rounded left-0 w-16' />
+                <div key={indx} className={`${e.color} w-40 h-40 relative rounded`}>
+                  <img src={e.icon} className='absolute bg-gray-600 rounded mr-10 w-16' style={{left:"-10px", top: "-10px"}}/>
                   <img src={configuredGestures[indx] ? configuredGestures[indx].url : '/icons/icons8-no-image-100.png'} className='h-full w-40' />
                 </div>
               ))}
@@ -499,16 +465,14 @@ const Dash: NextPage = () => {
           </div>
 
 
-          <div className='flex flex-col h-full border-l border-gray-600'>
-
-            <ul className="menu p-4 h-[85vh] overflow-y-scroll w-[25vw] bg-base-200 text-base-content">
+          <div className='flex flex-row h-full border-l border-gray-600 h-auto' style={{flex:"1"}}>
+            <div className="menu flex flex-col p-4 h-[100%] overflow-y-auto bg-base-200 text-base-content justify-between">
               {/* Searchbox */}
 
               {/* as the user types something we hit the API and fetch the data, and show here */}
 
               {currentPane === 'history' ?
                 <div>
-
                   <div className="text-xl font-bold text-amber-300">Recently Used</div>
                   {(currentQValue.length > 3 && !historyData.length && !isLoading) ? <img src='/icons/ezgif-5-672dfdd7b6.gif' className='rounded-lg border-2 mt-3 border-green-300' /> : null}
                   {isHistoryLoading && (<div className='alert text-green-500 font-bold flex justify-center mt-3 border-green-300 border-2'>Loading...</div>)}
@@ -525,9 +489,6 @@ const Dash: NextPage = () => {
                       }
                     }} key={e.id} src={e.url} className='cursor-pointer rounded-lg border-2 hover:border-4 mt-3 hover:border-green-500 border-green-300 min-h-12 bg-purple-500 w-full' />
                   ))}
-
-
-
                 </div> :
 
                 <div className='flex flex-col gap-2'>
@@ -571,42 +532,24 @@ const Dash: NextPage = () => {
                         })
                       }} key={e.id} src={e.url} className='cursor-pointer rounded-lg border-2 hover:border-4 mt-3 hover:border-green-500 border-green-300 min-h-12 bg-purple-500 w-full' />
                     ))}
-
-
-
                   </div>
-
                 </div>}
-
-
-
-
-
-
               {/* <div className='py-4'>
             </div> */}
               {/* <DrawerContent></DrawerContent> */}
 
-            </ul>
-
-            <div className='absolute  h-[2vh] w-[30vw] flex justify-center gap-4 bottom-0 right-0'>
-              <label onClick={() => {setCurrentPane('history'), fetchHistoryData()}} htmlFor="my-drawer-4" className={`drawer-button btn gap-2 btn-sm ${currentPane === 'history' ? 'btn-warning' : 'btn-ghost border-white border'}`}><img className='w-7' src='/icons/Time Machine.svg' />History</label>
-              <label onClick={() => setCurrentPane('search')} htmlFor="my-drawer-4" className={`drawer-button btn  gap-2 btn-sm ${currentPane === 'search' ? 'btn-warning' : 'btn-ghost border-white border'}`}><img className='w-7' src='/icons/Compass.svg' />Search</label>
+              <div className='h-[2vh] mx-auto flex justify-center gap-4 bottom-0'>
+                <label onClick={() => {setCurrentPane('history'), fetchHistoryData()}} htmlFor="my-drawer-4" className={`drawer-button btn gap-2 btn-sm ${currentPane === 'history' ? 'btn-warning' : 'btn-ghost border-white border'}`}><img className='w-7' src='/icons/Time Machine.svg' />History</label>
+                <label onClick={() => setCurrentPane('search')} htmlFor="my-drawer-4" className={`drawer-button btn  gap-2 btn-sm ${currentPane === 'search' ? 'btn-warning' : 'btn-ghost border-white border'}`}><img className='w-7' src='/icons/Compass.svg' />Search</label>
+              </div>
             </div>
+
+            
           </div>
-
-
 
           {/* PAGE CONTENT */}
 
-
-
-
-
         </div>
-
-
-
 
         {/* <div className="drawer h-[calc(100%)] drawer-mobile drawer-end">
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -620,8 +563,6 @@ const Dash: NextPage = () => {
 
     </div>
   )
-
-
 
 }
 
