@@ -1,3 +1,4 @@
+# EDwiz 🪄
 
 ## Inspiration 💡
 
