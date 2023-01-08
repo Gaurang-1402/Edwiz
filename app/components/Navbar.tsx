@@ -17,10 +17,12 @@ export const Navbar = () => {
     }, [])
 
     return (
-        
-        <div className="navbar h-16 justify-between text-sm">
+        // transparent background color
+
+        <div className="navbar h-16 justify-between text-sm mt-3 px-5" style={{backgroundColor: "rgba(255, 255, 255, 0)", backdropFilter: "blur(5px)"}}>
+
             <div className="">
-                <Link href='/' className="btn btn-ghost normal-case text-lg flex flex-col ml-1 p-6 h-5" style={{borderRadius: "6px !important"}}>
+                <Link href='/' className="btn btn-ghost normal-case text-lg flex flex-col ml-1 p-6 h-5" style={{borderRadius: "5px !important", /* backgroundColor: "rgba(0, 0, 0, .15)" */}}>
                     <img alt="" src="/images/logo.png" className=""  style={{maxWidth:"110px", height:"auto", margin: "0.25rem 0 0 0"}}/>
                 </Link>
             </div>
