@@ -101,11 +101,11 @@ We were delighted to know that this was a category. We are really sympathetic to
 
 ## Best Use of MongoDB Atlas
 
-MongoDB Atlas was one of the main services we used in our project and is one of the reasons why we were able to build such a technically complex project in such a short time. 
+MongoDB Atlas was one of the main cloud services we used in our project to host our database and is one of the reasons why we were able to build such a technically complex project in such a short time. 
 
-We used MongoDB as our database and used the accompanying GUI client Mongo Atlas to interact with the DB.
+We used MongoDB as our database and used the accompanying GUI client Mongo Compass to interact with the DB.
 
-We also used MongoDB as a caching layer. If users have already used an image before. This way we save compute and utilize storage to make our app super quick for the users. We tied our user credentials and user history in collections in the DB. The super easy interface with MongoDB made it pleasurable to use.
+We also used MongoDB as a caching layer, in a scenario where users already selected an image before. This way we save compute and utilize storage to make our app super quick for the users. We tied our user credentials and user history in collections in the DB. The super easy interface with MongoDB made it pleasurable to use.
 
 [![Screenshot-2023-01-08-172620.png](https://i.postimg.cc/bNxbY40K/Screenshot-2023-01-08-172620.png)](https://postimg.cc/F7K1DWBZ)
 [![Screenshot-2023-01-08-172638.png](https://i.postimg.cc/vmfwCLwL/Screenshot-2023-01-08-172638.png)](https://postimg.cc/v1YKVnBc)
@@ -124,14 +124,11 @@ This project was especially an achievement for us because the experience was ver
 
 **Proper sleep is very important! :p** Well, a lot of things, both summed up in technical & non-technical sides. Also not to mention, we enhanced our googling, ChatGPTing and StackOverflow searching skills during the hackathon :)
 
-
-We are a **team of 4** passionate about bringing remote education to areas with poor internet connectivity!. What we create during our Hackathons is just the tip of the iceberg and we believe this project can help uplift the communication lags faced everyday by providing a Safe, Fast & Reliable connection in this time of despair.
-
   
 
 ## What's next? 🚀
 
-*We believe that our App has great potential*. We just really want this project to have a positive impact on people's lives! We would love to make it more *scalable* & *cross-platform* so that the user interaction increases to a great extent. Additionally, we intend to continue improving the image compression algorithms & adding receipts to track conversations for later use.
+*We believe that our App has great potential*. We just really want this project to have a positive impact on people's lives! We would love to make it more *scalable* & *cross-platform* so that the user interaction increases to a great extent.
 
 **Note ⚠️ — API credentials have been revoked. If you want to run the same on your local, use your own credentials.**
 
